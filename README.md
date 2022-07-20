@@ -27,7 +27,7 @@ Program to create blueprints for the Factorio game using hand-created data inste
 ---
 ## Version
 
-0.1.0-objects.4.connection
+0.1.0-objects.5.Postition
 
 [TOP](#contents)
 
@@ -99,7 +99,8 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 1.  `.1.color`: add the `Color` object. (will be optional)
 2.  `.2.itemFilter`: add the `ItemFilter` object (will be optional)
 3.  `.3.itemRequest`: add the `ItemRequest` object (will be optional)
-4.  `.4.connection`: add the Connection object and its dependancies (will be optional)
+4.  `.4.connection`: add the `Connection` object and its dependancies (will be optional)
+5.  `.5.position`: add the `Postition` object (not an optional item, per the Wiki)
 
 ### Dataset information
 
@@ -143,6 +144,8 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 Entity ID numbers will be created in the same order their data is defined in the dataaset, so the numbers will be deterministic, but you'll have to do the counting rather than expecting the program to.
 
 The filling in of data, with a properly defined stucture, like above, is quite simple for me, a human, yet rather difficult to program, without adding layers of complexity to the code which I'd rather skip. So, hand-crafted it is. (Have to count that as one of the 8 extra hand-carfts in the Lazy Bastard achievement I guess.)
+
+-  `position => '32:-65',`: simple enough - pair of X Y coordinated joined by a colon.
 
 [TOP](#contents)
 

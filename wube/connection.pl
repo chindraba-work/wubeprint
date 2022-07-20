@@ -12,7 +12,7 @@ use warnings;
 
 =head1 NAME
 
-Factorio Print Maker: _ object
+Factorio Print Maker: Connection object
 
 =head1 SYNOPSIS
 
