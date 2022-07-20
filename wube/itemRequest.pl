@@ -6,14 +6,49 @@ use 5.0300;
 use strict;
 use warnings;
 
-# Factorio Blueprint String objects defined at
-# <https://wiki.factorio.com/Blueprint_string_format>
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Factorio Print Maker: ItemRequest object
+
+=head1 SYNOPSIS
+
+    my $itemName = 'iron-ore';
+    my $itemCount = 10;
+    my $itemRequest = wubeItemRequest([$itemName, $itemCount]);
+    my $itemRequest = wubeItemRequest(['an-item', 5], ['another-one', 15], ['something', 245]);
+
+=head1 DESCRIPTION
+
+Creates an B<ItemRequest> object for blueprint strings.
+
+For object specs see L<Item request object|https://wiki.factorio.com/Blueprint_string_format#Item_request_object>
+
+=head2 EXPORT
+
+    wubeItemRequest()
+
+=head1 ROUTINE:
+
+=cut
 
 sub wubeItemRequest {
-#   Build the array of item requsets
-#   Arg: multiples of 
-#           [itemName, itemCount],
-#   Return: ItemRequest Object
+
+=head2 wubeItemRequest()
+
+=head3 Arguments: list of arrayRefRequestData
+
+    arrarRefRequestData: [itemName, itemCount]
+        itemName: name of the item to request
+        itemCount: how many to request
+
+=head3 Return: ItemRequest Object
+
+=cut
+
     return [
         map { {$_->[0] => $_->[1] }; } @_
     ];
@@ -24,30 +59,6 @@ sub wubeItemRequest {
 
 1;
 __END__
-
-=head1 NAME
-
-Factorio Railway Print Maker
-
-=head1 SYNOPSIS
-
-  $ perl wube_print.pl
-  $ wube_print.pl
-
-=head1 DESCRIPTION
-
-Reads a data file with specific information about a blueprint or
-blueprint book and makes the blueprints, and books, to meet that
-definition. Targeted at train stops and trains, but possible use
-for other prints later.
-
-Intended as an autmoated method for making many very similar prints
-with minor variations between them. For complex prints, or low
-numbers of prints, the in-game system is much faster and easier.
-
-=head2 EXPORT
-
-None.
 
 =head1 AUTHOR
 
@@ -78,5 +89,7 @@ BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+=cut
 
 # Vim: syntax=perl ts=4 sts=4 sw=4 et sr:

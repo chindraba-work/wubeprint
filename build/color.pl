@@ -6,16 +6,62 @@ use 5.0300;
 use strict;
 use warnings;
 
-# Factorio Blueprint String objects defined at
-# <https://wiki.factorio.com/Blueprint_string_format>
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Factorio Print Maker: Color object helper routine
+
+=head1 SYNOPSIS
+
+    my $redValue = 153;
+    my $greenValue = 204;
+    my $blueValue = 51;
+    my $colorSet = buildColor([$redValue, $greenValue, $blueValue]);
+    my $hecColor = '#993366';
+    my $colorSet = buildColor($hexColor);
+    my $colorObject = wubeColor( buildColor([255, 255, 0]) );
+
+=head1 DESCRIPTION
+
+Helps in the creation a B<Color> object for blueprint strings.
+
+Converts an hex string color code to floating point triplet (0..1)
+
+-or-
+
+Converts a triplet of RGB values (0..255) to floating point triplet (0..1)
+
+The returned list can be passed directly to wubeColor().
+
+For object specs see L<Color object|https://wiki.factorio.com/Blueprint_string_format#Color_object>
+
+=head2 EXPORT
+
+    buildColor()
+
+=head1 ROUTINES:
+
+=cut
 
 sub buildColor {
-# Convert hex or RGB values to list of floating points
-#   Arg:
-#       string '#abcd87' hex code of color
-#       OR arrayRef of 0..255 color values [ red, green, blue ]
-#   Return:
-#       arrayRef of floats 0..1 [red,green,blue]
+
+=head2 buildColor()
+
+=head3 Argument: 'hex-color' | [redVal, greenVal, blueVal]
+
+        hex-color: string, include the leading C<#> '#993366'
+        redVal, greenVal, blueVal: integer, color values (0..255) for a color
+            [153, 51, 102]
+
+=head3 Return: [r, g, b]
+
+        r, g, b: floating point, color values (0..1) for wubeColor() to use.
+
+=cut
+
     if ( '' eq ref $_[0] ) {
         return [
             map {
@@ -31,30 +77,6 @@ sub buildColor {
 
 1;
 __END__
-
-=head1 NAME
-
-Factorio Railway Print Maker
-
-=head1 SYNOPSIS
-
-  $ perl wube_print.pl
-  $ wube_print.pl
-
-=head1 DESCRIPTION
-
-Reads a data file with specific information about a blueprint or
-blueprint book and makes the blueprints, and books, to meet that
-definition. Targeted at train stops and trains, but possible use
-for other prints later.
-
-Intended as an autmoated method for making many very similar prints
-with minor variations between them. For complex prints, or low
-numbers of prints, the in-game system is much faster and easier.
-
-=head2 EXPORT
-
-None.
 
 =head1 AUTHOR
 
@@ -85,5 +107,7 @@ BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+=cut
 
 # Vim: syntax=perl ts=4 sts=4 sw=4 et sr:

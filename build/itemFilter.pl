@@ -6,34 +6,94 @@ use 5.0300;
 use strict;
 use warnings;
 
-# Factorio Blueprint String objects defined at
-# <https://wiki.factorio.com/Blueprint_string_format>
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Factorio Print Maker: ItemFilter object
+
+=head1 SYNOPSIS
+
+    my $filteredSlot = 1;
+    my $filterSet = [
+        ['coal', 35],
+        'rocket-fuel',
+        ['wood', 400],
+    ];
+    my $itemFilters = buildItemFilter_list([
+        [5, 'iron-ore'],
+        [8, 'copper-plate],
+        [7, 'copper-ore'],
+    ]);
+    my $realFirstSlot
+    my $filterObjects = wubeItemFilter_list( buildItemFilter_list (\$realFirstSlot, $filterSet) );
+
+=head1 DESCRIPTION
+
+Helps in the creation of an B<ItemFilter> object for blueprint strings.
+
+For object specs see L<Item filter object|https://wiki.factorio.com/Blueprint_string_format#Item_filter_object>
+
+=head2 EXPORT
+
+    buildItemFilter_list()
+
+=head1 ROUTINES:
+
+=cut
 
 sub _buildItemFilter {
-# Helper function for buildItemFilter_list 
-#   Args:
-#       nextSlot,
-#       itemName,
-#       slotCount
-#   Return: increments nextSlot as needed and returns list of arrayRef
-#       (
-#           [ slotNum, itemName ]
-#       )
+
+=head2 _buildItemFilter()
+
+=over
+
+Helper function for buildItemFilter_list 
+
+=back
+
+=head3 Arguments: intRefNextSlot, itemName, slotCount
+
+        intRefNextSlot: ref to integer (1-based), what slot to assign the filter to
+        itemName: string, name of the filtered item
+        slotCount: integet, how many slots to filter
+
+=head3 Return: list of arrayRefSlotFilter. I<Increments the value of intRefNextSlot>
+
+        arrayRefSlotFilter: [slot-number, item-name]
+
+=cut
+
     my $slotRef = shift;
     return (
         map { [$$slotRef++, $_[0]] } (1..$_[1])
     );
 }
+
 sub buildItemFilter_list {
-# Convert a list of items and counts to a list for input to wubeItemFilter_list
-#   Arg:
-#       firstSlot the first slot to filter using this list
-#       itemName | [itemName, slotCount] ....
-#           scalar elements are one-slot assignments, arrays are multi-slot
-#   Retrun: firstSlot is incremented by total item filters built
-#       arrayRef [
-#           [ slotNum, itemName],
-#       ]
+
+=head2 buildItemFilter_list()
+
+Convert a list of items and countd to a list for input to wubeItemFilter_list()
+
+=head3 Arguments: intRefFirstSlot, itemDataList
+
+        intRefFirstSlot: ref to integer (1-based), first slot to filter with the list
+        itemDataList: list of item-name | [item-name, slot-count] (mixed ordering)
+            item-name: string, name of the item to filter
+            slot-count: how many slots to filter to the item
+
+=head3 Return: arrayRefData. I<Increments the value of intRefFirstSlot>
+
+        arrayOfArrayRedDataList: list of arrayRefData
+            arrayRefData: [index-number, item-name]
+                index-number: integer (1-based), slot position
+                item-name: string, name of the item to filter
+
+=cut
+
     my $indexRef = shift;
     return [
         map {
@@ -48,30 +108,6 @@ sub buildItemFilter_list {
 
 1;
 __END__
-
-=head1 NAME
-
-Factorio Railway Print Maker
-
-=head1 SYNOPSIS
-
-  $ perl wube_print.pl
-  $ wube_print.pl
-
-=head1 DESCRIPTION
-
-Reads a data file with specific information about a blueprint or
-blueprint book and makes the blueprints, and books, to meet that
-definition. Targeted at train stops and trains, but possible use
-for other prints later.
-
-Intended as an autmoated method for making many very similar prints
-with minor variations between them. For complex prints, or low
-numbers of prints, the in-game system is much faster and easier.
-
-=head2 EXPORT
-
-None.
 
 =head1 AUTHOR
 
@@ -102,5 +138,7 @@ BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+=cut
 
 # Vim: syntax=perl ts=4 sts=4 sw=4 et sr:

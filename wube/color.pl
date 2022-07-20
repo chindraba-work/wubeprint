@@ -6,15 +6,48 @@ use 5.0300;
 use strict;
 use warnings;
 
-# Factorio Blueprint String objects defined at
-# <https://wiki.factorio.com/Blueprint_string_format>
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Factorio Print Maker: Color object
+
+=head1 SYNOPSIS
+
+    my $redValue = 0.25;
+    my $greenValue = 0.33;
+    my $blueValue = 0.78;
+    my $colorObject = wubeColor([$redValue, $greenValue, $blueValue]);
+
+=head1 DESCRIPTION
+
+Creates a B<Color> object for blueprint strings.
+
+For object specs see L<Color object|https://wiki.factorio.com/Blueprint_string_format#Color_object>
+
+=head2 EXPORT
+
+    wubeColor()
+
+=head1 ROUTINES:
+
+=cut
 
 sub wubeColor {
-# Build the color Object for Wube blueprints
-#   Arg:
-#       arrayRef of floating point 0..1
-#           [ red, blue, green ]
-#   Return: Color Object
+
+=head2 wubeColor()
+
+=head3 Argument: arrayRefData
+
+        arrayRefData: arrayRef of [red, green, blue]
+            red, green, blue: floating point, color value (0 .. 1)
+
+=head3 Return: Color Object
+
+=cut
+
     return {
         r => 1 * sprintf("%.16f", $_[0]->[0]),
         b => 1 * sprintf("%.16f", $_[0]->[1]),
@@ -25,30 +58,6 @@ sub wubeColor {
 
 1;
 __END__
-
-=head1 NAME
-
-Factorio Railway Print Maker
-
-=head1 SYNOPSIS
-
-  $ perl wube_print.pl
-  $ wube_print.pl
-
-=head1 DESCRIPTION
-
-Reads a data file with specific information about a blueprint or
-blueprint book and makes the blueprints, and books, to meet that
-definition. Targeted at train stops and trains, but possible use
-for other prints later.
-
-Intended as an autmoated method for making many very similar prints
-with minor variations between them. For complex prints, or low
-numbers of prints, the in-game system is much faster and easier.
-
-=head2 EXPORT
-
-None.
 
 =head1 AUTHOR
 
@@ -80,4 +89,5 @@ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+=cut
 # Vim: syntax=perl ts=4 sts=4 sw=4 et sr:
