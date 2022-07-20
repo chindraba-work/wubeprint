@@ -27,7 +27,7 @@ Program to create blueprints for the Factorio game using hand-created data inste
 ---
 ## Version
 
-0.1.0-objects-0
+0.1.0-objects-1-color
 
 [TOP](#contents)
 
@@ -88,9 +88,21 @@ Well, that's the plan anyway. In its final form sample dataset files will be ava
 [TOP](#contents)
 
 ---
-## 
+## Changelog
 
-The current version is locked at 0.1.0-objects.x, with x growing as I implement the creation of each object from the Wube specification above. Here will be the growing list of objects (and version numbers) while development progresses. Each will probably include some form of hint as to the dataset information it processes as well. This list represents the Changelog until such time as the program becomes functional. At that time an actual CHANGELOG file will be created and maintined
+The current version is locked at 0.1.0-objects.x, with x growing as I implement the creation of each object from the Wube specification above. Here will be the growing list of objects (and version numbers) while development progresses. Each will probably include some form of hint as to the dataset information it processes as well. This list represents the Changelog until such time as the program becomes functional. At that time an actual CHANGELOG file will be created and maintined.
+
+All dataset information is as it will be in the text file. As a rule the `buildXYZ` subroutines (usually in `build/XYZ.pl`) will create the data as needed for the `wubeXYZ` subroutines (usually in `wube/XYZ.pl`) which create the data structure for conversion to JSON formated `XYZ` object in the blueprint string format definition above.
+
+### Version 0.1.0-objects:
+
+-  `.1-color`: add the `Color` object.
+
+### Dataset information
+
+-  `color => `, 2 options:
+  1.  string of hexcode, with the leading "#" `color => '#cc9933'`
+  2.  arrayRef of 3 numeric (0 .. 255) RGB color values `color => [ 204, 153, 51 ]`
 
 
 [TOP](#contents)
