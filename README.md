@@ -27,7 +27,7 @@ Program to create blueprints for the Factorio game using hand-created data inste
 ---
 ## Version
 
-0.1.0-objects.3.itemRequest
+0.1.0-objects.4.connection
 
 [TOP](#contents)
 
@@ -99,6 +99,7 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 1.  `.1.color`: add the `Color` object. (will be optional)
 2.  `.2.itemFilter`: add the `ItemFilter` object (will be optional)
 3.  `.3.itemRequest`: add the `ItemRequest` object (will be optional)
+4.  `.4.connection`: add the Connection object and its dependancies (will be optional)
 
 ### Dataset information
 
@@ -127,7 +128,21 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 ```
    The `first_filter` will be updated as filters are added, allowing for extra calls to `buildItemFilter_list()` outside the structure if needed. Might be a while before that functionality is included in my code, however. It applies to cargo wagons, for now, but could be used elsewhere when I get there.
 -  `items =>` arrayRef of arrayRef, `[[ 'what', howMany], [] ]` (Intentionally made the reverse of the filter option, so as to be sure which one is being "made" when typing it.) So far it looks as if this list will be directly utilized by `wubeItemRequest()` without any help from internals. For locomotives it should be just one anyway, i.e.: `items => [['solid-fuel', 150]]`. For requester chests it can be complex, but that's not what I'm trying to make, yet.
+-  `connections =>` is a complex thing showing what other entities this entity is connected to by which color wire. Without making, and numbering, the entities completely from scracth I've opted for letting the user (me) keep track of which entities are which and build by hand what `wubeConnection()` will need. In the case of arithmetic and decider combinators there can be two connections. Even though I've no plans for dealing with that programtically, it is still handled by the function. So, if the current entity is an arithmetic combinator and is connected to 5 other devices, 1 & 2 on green input, 3 & 4 on red input, and 5 & 2 on green output, it would be written thus:
+```
+        connections => [
+            [
+                { green => [1,2] },
+                { red => [3,4] },
+            ],
+            [
+                { green => [5,2] },
+            ],
+        ],
+```
+Entity ID numbers will be created in the same order their data is defined in the dataaset, so the numbers will be deterministic, but you'll have to do the counting rather than expecting the program to.
 
+The filling in of data, with a properly defined stucture, like above, is quite simple for me, a human, yet rather difficult to program, without adding layers of complexity to the code which I'd rather skip. So, hand-crafted it is. (Have to count that as one of the 8 extra hand-carfts in the Lazy Bastard achievement I guess.)
 
 [TOP](#contents)
 
