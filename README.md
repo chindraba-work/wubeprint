@@ -27,7 +27,7 @@ Program to create blueprints for the Factorio game using hand-created data inste
 ---
 ## Version
 
-0.1.0-objects-1-color
+0.1.0-objects.3.itemRequest
 
 [TOP](#contents)
 
@@ -96,8 +96,9 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 
 ### Version 0.1.0-objects:
 
-1.  `.1-color`: add the `Color` object. (will be optional)
-2.  `.2-itemFilter`: add the `ItemFilter` object (will be optional)
+1.  `.1.color`: add the `Color` object. (will be optional)
+2.  `.2.itemFilter`: add the `ItemFilter` object (will be optional)
+3.  `.3.itemRequest`: add the ItemRequest` object (will be optional)
 
 ### Dataset information
 
@@ -125,6 +126,7 @@ All dataset information is as it will be in the text file. As a rule the `buildX
         ],
 ```
    The `first_filter` will be updated as filters are added, allowing for extra calls to `buildItemFilter_list()` outside the structure if needed. Might be a while before that functionality is included in my code, however. It applies to cargo wagons, for now, but could be used elsewhere when I get there.
+-  `items =>` arrayRef of arrayRef, `[[ 'what', howMany], [] ]` (Intentionally made the reverse of the filter option, so as to be sure which one is being "made" when typing it.) So far it looks as if this list will be directly utilized by `wubeItemRequest()` without any help from internals. For locomotives it should be just one anyway, i.e.: `items => [['solid-fuel', 150]]`. For requester chests it can be complex, but that's not what I'm trying to make, yet.
 
 [TOP](#contents)
 
