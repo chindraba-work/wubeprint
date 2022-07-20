@@ -96,14 +96,35 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 
 ### Version 0.1.0-objects:
 
--  `.1-color`: add the `Color` object.
+1.  `.1-color`: add the `Color` object. (will be optional)
+2.  `.2-itemFilter`: add the `ItemFilter` object (will be optional)
 
 ### Dataset information
 
 -  `color => `, 2 options:
-  1.  string of hexcode, with the leading "#" `color => '#cc9933'`
-  2.  arrayRef of 3 numeric (0 .. 255) RGB color values `color => [ 204, 153, 51 ]`
-
+   1.  string of hexcode, with the leading "#" `color => '#cc9933',`
+   2.  arrayRef of 3 numeric (0 .. 255) RGB color values `color => [ 204, 153, 51 ],`
+-  `first_filter =>`, numeric (first item slot to be filtered) `first_filter => 4,`
+-  `filter_input =>`, arrayRef of 2 options:
+   1.  string, item to filter (filter one slot to item)
+   2.  arrayRef, `[ number, string ]` (filter numeber of slots to item)
+   A complex filter for a cargo wagon can be:
+   -  3 slots unfiltered
+   -  1 wood
+   -  5 coal
+   -  10 iron-ore
+   -  1 pump
+   -  remaining slots unfiltered
+```
+        first_filter => 4,
+        filter_input => [
+            'wood',
+            [5, 'coal'],
+            [10, 'iron-ore'],
+            'pump',
+        ],
+```
+   The `first_filter` will be updated as filters are added, allowing for extra calls to `buildItemFilter_list()` outside the structure if needed. Might be a while before that functionality is included in my code, however. It applies to cargo wagons, for now, but could be used elsewhere when I get there.
 
 [TOP](#contents)
 
