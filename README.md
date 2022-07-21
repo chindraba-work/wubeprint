@@ -27,7 +27,7 @@ Program to create blueprints for the Factorio game using hand-created data inste
 ---
 ## Version
 
-0.1.0-objects.8.circuitCondition
+0.1.0-objects.9.waitCondition
 
 [TOP](#contents)
 
@@ -104,6 +104,7 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 6.  `.6.tile`: add the `Tile` object (will be optional, though recommended)
 7.  `.7.signalID`: add the  `SignalID` object (situaltionally required)
 8.  `.8.circuitCondition`: add the `CircuitCondition` object (situationally required)
+9.  `.9.waitCondition`: add the `WaitCondition` object (situationally available)
 
 ### Dataset information
 
@@ -152,9 +153,11 @@ The filling in of data, with a properly defined stucture, like above, is quite s
 
 -  `tileSet => `: arrayRef of hashRefs hash has {tile-name => {x => num | range, y=> num | range}} as a list of non-overlapping rectangles. Be advised: Factorio will not handle two tiles in the same position. Results are undefined. Concrete over landfill requires two prints. Nothing I can do here will change that there.
 
--   `signalData => [type, name]`: type is limited to 'item'|'fluid'|'virtual' and name must be in that group.
+-  `signalData => [type, name]`: type is limited to 'item'|'fluid'|'virtual' and name must be in that group.
 
--   `circuitCondition => [type, [signal-type, signal-name], integer | [signal-type, signal-name]]` : first two are required, 3rd is optional (default = 0) or can be an integer or a second signal.
+-  `circuitCondition => [type, [signal-type, signal-name], integer | [signal-type, signal-name]]` : first two are required, 3rd is optional (default = 0) or can be an integer or a second signal.
+
+-  `waitCondition => [compare-type, wait-type, num | circuitConditionData]`: many ways to present the data, depending on the wait-type. The `num` is used for 'time' and 'inactivity' types, while `circuirConditionData` is only used for 'item-count', 'fluid-count' and 'circuit' types. All the rest use neither.
 
 [TOP](#contents)
 
