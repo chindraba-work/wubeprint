@@ -27,7 +27,7 @@ Program to create blueprints for the Factorio game using hand-created data inste
 ---
 ## Version
 
-0.1.0-objects.7.signalID
+0.1.0-objects.8.circuitCondition
 
 [TOP](#contents)
 
@@ -102,7 +102,8 @@ All dataset information is as it will be in the text file. As a rule the `buildX
 4.  `.4.connection`: add the `Connection` object and its dependancies (will be optional)
 5.  `.5.position`: add the `Postition` object (not an optional item, per the Wiki)
 6.  `.6.tile`: add the `Tile` object (will be optional, though recommended)
-7.  `.7.signalID`: add the  `SignalID` object (situaltionally optional)
+7.  `.7.signalID`: add the  `SignalID` object (situaltionally required)
+8.  `.8.circuitCondition`: add the `CircuitCondition` object (situationally required)
 
 ### Dataset information
 
@@ -152,6 +153,8 @@ The filling in of data, with a properly defined stucture, like above, is quite s
 -  `tileSet => `: arrayRef of hashRefs hash has {tile-name => {x => num | range, y=> num | range}} as a list of non-overlapping rectangles. Be advised: Factorio will not handle two tiles in the same position. Results are undefined. Concrete over landfill requires two prints. Nothing I can do here will change that there.
 
 -   `signalData => [type, name]`: type is limited to 'item'|'fluid'|'virtual' and name must be in that group.
+
+-   `circuitCondition => [type, [signal-type, signal-name], integer | [signal-type, signal-name]]` : first two are required, 3rd is optional (default = 0) or can be an integer or a second signal.
 
 [TOP](#contents)
 
