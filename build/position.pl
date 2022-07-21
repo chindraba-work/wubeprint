@@ -16,7 +16,7 @@ Factorio Print Maker: Position object
 
 =head1 SYNOPSIS
 
-    my $coordPair = '134:-27';
+    my $coordPair = '134.6132:-27.25';
     my @coordList = buildPosition($coordPair);
     my $positionObject = wubePosition( buildPosition($coodrPair) );
 
@@ -40,7 +40,7 @@ sub buildPosition {
 
 =head3 Argument: coordTuple
 
-        coordTuple: string, 'X:Y' where X and Y are the coordinates tu use
+        coordTuple: string, 'X:Y' where X and Y are the floating point coordinates to use
 
 =head3 Return: list (x, y)
 

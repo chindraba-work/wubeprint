@@ -12,51 +12,43 @@ use warnings;
 
 =head1 NAME
 
-Factorio Print Maker: Position object
+Factorio Print Maker: Tile object
 
 =head1 SYNOPSIS
 
-    my $x_coord = 13.33;
-    my $y_coord = -54.25;
-    my $position = wubePositin($x_coord, $y_coord);
-    my @coordPair = (5, 32);
-    my $position = wubePosition(@coordPair);
-    my $coordTuple = '135.5:94.835';
-    my $position = wubePostition( buildPosition($coordTuple) );
-
 =head1 DESCRIPTION
 
-Creates a B<Position> object for blueprint strings.
+Creates a B<Tile> object for blueprint strings.
 
-For object specs see L<Position object|https://wiki.factorio.com/Blueprint_string_format#Position_object>
-
+For object specs see L<Tile object|https://wiki.factorio.com/Blueprint_string_format#Tile_object>
 
 =head2 EXPORT
 
-    wubePosition()
+    wubeTile()
 
 =head1 ROUTINES:
 
 =cut
 
-sub wubePosition {
+sub wubeTile {
 
-=head2 wubePosition()
+=head2 wubeTile()
 
-=head3 Arguments: X, Y
+Make a Tile object
 
-        X, Y: floating-point, blueprint-relative coordinates
-            NB: Wiki specifies it as print relative with 0,0 at the center.
-            I have found that true only if grid-lock is on. Otherwise it
-            seems to be centered somewhere else, not sure where as I haven't
-            tested it enough to find out. I do know that with a BP 3 x 5 in 
-            size, the position of -137 x 15 don't add up with a 0,0 print center.
+=head3 Arguments: tile-name, x-coord, y-coord
 
-=head3 Return: Position object
+        tile-name: string
+        x-coord, y-coord: floating point (though always whole numbers for tiles)
+
+=head3 Return: Tile object
 
 =cut
 
-    return { x => $_[0], y => $_[1] };
+    return {
+        name => $_[0],
+        position => wubePosition($_[1], $_[2]),
+    };
 }
 
 1;
